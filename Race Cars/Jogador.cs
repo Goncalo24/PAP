@@ -49,7 +49,7 @@ namespace Race_Cars
             {
                 posicao.X++;
                 esquerda = false;
-            }
+            } 
 
         }
 
