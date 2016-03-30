@@ -53,6 +53,34 @@ namespace Race_Cars
 
         }
 
+        public void Colisao(Rectangle novoRetangulo, int xOffset, int yOffset)
+        {
+            if(retangulo.TocaTopo(novoRetangulo))
+            {
+                retangulo.Y = novoRetangulo.Y - retangulo.Height;
+            }
+
+            if (retangulo.TocaEsquerda(novoRetangulo))
+            {
+                posicao.X = novoRetangulo.X - retangulo.Height - 2;
+            }
+
+            if (retangulo.TocaDireita(novoRetangulo))
+            {
+                posicao.X = novoRetangulo.X + retangulo.Height + 2;
+            }
+
+            if (retangulo.TocaFundo(novoRetangulo))
+            {
+                retangulo.Y = novoRetangulo.Y + retangulo.Height;
+            }
+
+            if (posicao.X < 0) posicao.X = 0;
+            if (posicao.X > xOffset - retangulo.Width) posicao.X = xOffset - retangulo.Width;
+            if (posicao.Y < 0) posicao.Y = 0;
+            if (posicao.Y > yOffset - retangulo.Width) posicao.Y = yOffset - retangulo.Width;
+        }
+
         public void Draw(SpriteBatch sprites)
         {
             if (!esquerda)

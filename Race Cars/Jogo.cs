@@ -21,6 +21,7 @@ namespace Race_Cars
         {
             this.game = game;
         }
+
         public void Initialize()
         {
             pista = new Pista(game);
@@ -29,11 +30,13 @@ namespace Race_Cars
             jogador = new Jogador(game);
             jogador.Initialize();
         }
+
         public void LoadContent()
         {
             pista.LoadContent();
             jogador.LoadContent();
         }
+
         //devolve true para voltar ao menu
         public bool Update(GameTime gameTime)
         {
@@ -49,6 +52,7 @@ namespace Race_Cars
 
             return false;
         }
+
         public void Draw(GameTime gameTime, GraphicsDevice dispositivo, SpriteBatch spriteBatchPista, SpriteBatch spriteBatchJogador)
         {
             //fundo
