@@ -37,9 +37,34 @@ namespace Race_Cars
             get { return altura; }
         }
 
-        public Pista() { }
+        public Pista(Game game)
+        {
+            this.game = game;
+        }
 
         public void Generate( int[,] mapa ,int tamanho)
+        {
+
+
+            for (int x = 0; x < mapa.GetLength(1); x++)
+            {
+                for (int y = 0; y < mapa.GetLength(0); y++)
+                {
+                    int numero = mapa[y, x];
+
+                    if (numero > 0)
+                    {
+                        colisao.Add(new Colisao(game,numero, new Rectangle(x * tamanho, y * tamanho, tamanho, tamanho)));
+                    }
+
+                    comprimento = (x + 1) * tamanho;
+                    altura = (y + 1) * tamanho;
+                }
+            }
+        }
+
+
+        public void Initialize()
         {
             Generate(new int[,]
             {
@@ -50,32 +75,6 @@ namespace Race_Cars
               { 1,0,0,0,0,0,0,0,0,0,1},
               { 1,1,1,1,1,1,1,1,1,1,1}
             }, 64);
-
-            for (int x = 0; x < mapa.GetLength(1); x++)
-            {
-                for (int y = 0; y < mapa.GetLength(0); y++)
-                {
-                    int numero = mapa[y, x];
-
-                    if (numero > 0)
-                    {
-                        colisao.Add(new Colisao(numero, new Rectangle(x * tamanho, y * tamanho, tamanho, tamanho)));
-                    }
-
-                    comprimento = (x + 1) * tamanho;
-                    altura = (y + 1) * tamanho;
-                }
-            }
-        }
-
-        public Pista(Game game)
-        {
-            this.game = game;
-        }
-
-        public void Initialize()
-        {
-
         }
 
         public void LoadContent()
@@ -92,7 +91,7 @@ namespace Race_Cars
             }
         }
 
-        /*public void Draw(SpriteBatch sprites)
+       /* public void Draw(SpriteBatch sprites)
         {
            for (int y = 0; y < mapa.GetLength(0); y++)
            {
