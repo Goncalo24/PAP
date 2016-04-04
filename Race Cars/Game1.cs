@@ -20,10 +20,10 @@ namespace Race_Cars
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
-
-            graphics.IsFullScreen = false;
-            graphics.PreferredBackBufferWidth = 800;
+            Content.RootDirectory = "Content";   
+             
+            graphics.IsFullScreen = false; 
+            graphics.PreferredBackBufferWidth = 800; 
             graphics.PreferredBackBufferHeight = 340;
             graphics.ApplyChanges();
         }
