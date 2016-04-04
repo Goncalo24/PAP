@@ -69,7 +69,7 @@ namespace Race_Cars
             {
                 posicao.X = novoRetangulo.X + retangulo.Height + 2;
             }
-
+             
             if (retangulo.TocaFundo(novoRetangulo))
             {
                 retangulo.Y = novoRetangulo.Y + retangulo.Height;
