@@ -13,7 +13,7 @@ namespace Race_Cars
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
+        public GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         EstruturaJogo jogo;
 
@@ -23,8 +23,8 @@ namespace Race_Cars
             Content.RootDirectory = "Content";
 
             graphics.IsFullScreen = false;
-            graphics.PreferredBackBufferWidth = 800;
-            graphics.PreferredBackBufferHeight = 340;
+            graphics.PreferredBackBufferWidth = 1350;
+            graphics.PreferredBackBufferHeight = 730;
             graphics.ApplyChanges();
         }
 
@@ -83,6 +83,7 @@ namespace Race_Cars
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            GraphicsDevice.Clear(Color.Black);
             jogo.Draw(gameTime, GraphicsDevice, spriteBatch);
 
             // TODO: Add your drawing code here

@@ -13,38 +13,39 @@ namespace Race_Cars
     class Pista
     {
         public Game game;
-        Rectangle retangulo;
-        Rectangle posicao;
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
         List<Texture2D> tileTextures = new List<Texture2D>();
 
-        private List<Colisao> colisao = new List<Colisao>();
+        public List<Colisao> colisao = new List<Colisao>();
+        int[,] mapa; /*= { { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+              { 1,0,0,0,0,0,0,0,0,0,1},
+              { 1,0,0,0,0,1,0,0,0,0,1},
+              { 1,0,0,0,0,1,0,0,0,0,1},
+              { 1,0,0,0,0,0,0,0,0,0,1},
+              { 1,1,1,1,1,1,1,1,1,1,1} }; */
 
-        public List<Colisao> Colisao
-        {
-            get { return colisao; }
-        }
+        public int comprimento, altura;
 
-        private int comprimento, altura;
-        public int Comprimento
-        {
-            get { return comprimento; }  
-        }
-
-        public int Altura
-        {
-            get { return altura; }
-        }
 
         public Pista(Game game)
         {
             this.game = game;
+          
         }
 
-        public void Generate( int[,] mapa ,int tamanho)
+        public void Generate( int tamanho, int npista)
         {
-
+            string[] mapData = File.ReadAllLines("Pistas/pista"+npista+".txt");
+            //File.WriteAllLines("Content/Pistas/pista1", mapData);
+            
+            var width = mapData[0].Length;
+            var height = mapData.Length;
+            mapa = new int[height,width];
+            //var tileData = new char[width, height];
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                    mapa[y, x] =int.Parse( mapData[y][x].ToString());
+            }
 
             for (int x = 0; x < mapa.GetLength(1); x++)
             {
@@ -64,17 +65,11 @@ namespace Race_Cars
         }
 
 
-        public void Initialize()
+        public void Initialize(int npista)
         {
-            Generate(new int[,]
-            {
-              { 1,1,1,1,1,1,1,1,1,1,1},
-              { 1,0,0,0,0,0,0,0,0,0,1},
-              { 1,0,0,0,0,0,0,0,0,0,1},
-              { 1,0,0,0,0,0,0,0,0,0,1},
-              { 1,0,0,0,0,0,0,0,0,0,1},
-              { 1,1,1,1,1,1,1,1,1,1,1}
-            }, 64);
+            //carregar mapa do ficheiro
+
+            Generate( 64, npista);
         }
 
         public void LoadContent()
@@ -89,6 +84,28 @@ namespace Race_Cars
             {
                 tile.Draw(spritBatch);
             }
+        }
+
+        public int getTile(int X, int Y)
+        {
+            double pX = (double)X / 64;
+            double pY = (double)Y / 64;
+            int fx =(int) Math.Ceiling(pX);
+            int fy = (int)Math.Ceiling(pY);
+            int ix = (int)Math.Floor(pX);
+            int iy = (int)Math.Floor(pY);
+
+            for (int i = ix; i <= fx; i++)
+            {
+                for (int l = iy; l <= fy; l++)
+                {
+                    if (mapa[l,i]!=0)
+                    {
+                        return 1;
+                    }
+                }
+            }
+            return 0;
         }
 
        /* public void Draw(SpriteBatch sprites)

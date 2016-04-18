@@ -10,15 +10,19 @@ namespace Race_Cars
 {
     class Jogador
     {
+        GraphicsDevice graphics;
+        Vector2 pos1 = Vector2.Zero;
         public Game game;
-        Texture2D imagem;
-        bool esquerda;
+        Texture2D imagem1, imagem2;
+        bool esquerda, cima;
         Rectangle retangulo;
         Rectangle posicao;
+        int dir = 0;
 
         public Jogador(Game game)
         {
             this.game = game;
+            graphics = game.GraphicsDevice;
         }
 
         public void Initialize()
@@ -29,65 +33,77 @@ namespace Race_Cars
 
         public void LoadContent()
         {
-            imagem = game.Content.Load<Texture2D>("TexturasJogador/carro");
-            retangulo = new Rectangle(0, 0, imagem.Width, imagem.Height);
+            imagem1 = game.Content.Load<Texture2D>("TexturasJogador/carro1_lado");
+            retangulo = new Rectangle(0, 0, imagem1.Width, imagem1.Height);
             posicao.Width = retangulo.Width;
             posicao.Height = retangulo.Height;
 
+            imagem2 = game.Content.Load<Texture2D>("TexturasJogador/carro1_cima");
+            retangulo = new Rectangle(0, 0, imagem2.Width, imagem2.Height);
+            posicao.Width = retangulo.Width;
+            posicao.Height = retangulo.Height;
         }
 
-        public void Update(KeyboardState teclado)
+        public void Update(KeyboardState teclado,Pista pista)
         {
-            if (teclado[Keys.Up] == KeyState.Down) posicao.Y--;
-            if (teclado[Keys.Down] == KeyState.Down) posicao.Y++;
+            Rectangle anterior = posicao;
+            if (teclado[Keys.Up] == KeyState.Down)
+            {
+                posicao.Y--;
+                cima = true;
+                dir = 1;
+            }
+            if (teclado[Keys.Down] == KeyState.Down) 
+            {
+                posicao.Y++;
+                cima = false;
+                dir = 1;
+            }
             if (teclado[Keys.Left] == KeyState.Down)
             {
                 posicao.X--;
                 esquerda = true;
+                dir = 0;
             }
             if (teclado[Keys.Right] == KeyState.Down)
             {
                 posicao.X++;
                 esquerda = false;
-            } 
-
-        }
-
-        public void Colisao(Rectangle novoRetangulo, int xOffset, int yOffset)
-        {
-            if(retangulo.TocaTopo(novoRetangulo))
-            {
-                retangulo.Y = novoRetangulo.Y - retangulo.Height;
+                dir = 0;
             }
-
-            if (retangulo.TocaEsquerda(novoRetangulo))
+            if (pista.getTile(posicao.X, posicao.Y) != 0)
             {
-                posicao.X = novoRetangulo.X - retangulo.Height - 2;
+                posicao = anterior;
+                Console.WriteLine("x: {0}; y: {1}", posicao.X, posicao.Y);
             }
-
-            if (retangulo.TocaDireita(novoRetangulo))
-            {
-                posicao.X = novoRetangulo.X + retangulo.Height + 2;
-            }
-             
-            if (retangulo.TocaFundo(novoRetangulo))
-            {
-                retangulo.Y = novoRetangulo.Y + retangulo.Height;
-            }
-
-            if (posicao.X < 0) posicao.X = 0;
-            if (posicao.X > xOffset - retangulo.Width) posicao.X = xOffset - retangulo.Width;
-            if (posicao.Y < 0) posicao.Y = 0;
-            if (posicao.Y > yOffset - retangulo.Width) posicao.Y = yOffset - retangulo.Width;
         }
 
         public void Draw(SpriteBatch sprites)
         {
-            if (!esquerda)
-                sprites.Draw(imagem, posicao, Color.White);
+            if (dir == 0)
+            {
+                if (!esquerda)
+                {
+                    sprites.Draw(imagem1, posicao, Color.White);
+                }
+                else
+                {
+                    sprites.Draw(imagem1, new Vector2(posicao.X, posicao.Y), retangulo, Color.White,
+                            0, Vector2.Zero, Vector2.One, SpriteEffects.FlipHorizontally, 0);
+                }
+            }
             else
-                sprites.Draw(imagem, new Vector2(posicao.X, posicao.Y), retangulo, Color.White,
-                    0, Vector2.Zero, Vector2.One, SpriteEffects.FlipHorizontally, 0);
+            {
+                if (!cima)
+                {
+                    sprites.Draw(imagem2, new Vector2(posicao.X, posicao.Y), retangulo, Color.White,
+                             0, Vector2.Zero, Vector2.One, SpriteEffects.FlipVertically, 0);
+                }
+                else
+                {
+                    sprites.Draw(imagem2, posicao, Color.White);
+                }
+            }
         }
     }
 }

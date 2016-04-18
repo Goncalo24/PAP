@@ -14,6 +14,7 @@ namespace Race_Cars
         [STAThread]
         static void Main()
         {
+
             using (var game = new Game1())
                 game.Run();
         }

@@ -14,6 +14,7 @@ namespace Race_Cars
     // - ciclo do Jogo
     class EstruturaJogo
     {
+       // GraphicsDevice graphics;
         KeyboardState teclado;
         GamePadState gamepad;
         Game game;
@@ -23,6 +24,7 @@ namespace Race_Cars
         Texture2D opSair;
         bool disparou = false;
         Jogo jogo;
+        MenuPista menu;
 
         public EstruturaJogo(Game game)
         {
@@ -32,18 +34,20 @@ namespace Race_Cars
         public void Initialize()
         {
             estado = 0;
-
             opMenu = 1;
 
-            jogo = new Jogo(game);
-            jogo.Initialize();
+            Loggin f = new Loggin();
+            f.Enabled = true;
+            f.ShowDialog();
+
+            menu = new MenuPista(game);
         }
 
         public void LoadContent()
         {
-            opJogar = game.Content.Load<Texture2D>("jogar");
+            opJogar = game.Content.Load<Texture2D>("Jogar");
             opSair = game.Content.Load<Texture2D>("sair");
-            jogo.LoadContent();
+           
         }
 
         public void Update(GameTime gameTime)
@@ -51,7 +55,22 @@ namespace Race_Cars
             //atualizar jogo
             if (estado == 0) atualizarMenu();
             //atualizar menu
-            if (estado == 1) if (jogo.Update(gameTime)) estado = 0;
+            if (estado == 1) {
+                int op=menu.atualizarMenu();
+                if (op == 1 || op == 2 || op==3)
+                {
+                    estado = 2;
+                    jogo = new Jogo(game,op);
+                    jogo.Initialize();
+                    jogo.LoadContent();
+                }
+
+                if (op == 4)
+                {
+                    estado = 0;
+                }
+            }
+            if (estado == 2) if (jogo.Update(gameTime)) estado = 0;
         }
 
         public void atualizarMenu()
@@ -67,7 +86,6 @@ namespace Race_Cars
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
                 return;
-
 
             if (teclado[Keys.Down] == KeyState.Down || teclado[Keys.Up] == KeyState.Down || teclado[Keys.Enter] == KeyState.Down)
             {
@@ -100,7 +118,7 @@ namespace Race_Cars
 
         public void Draw(GameTime gameTime, GraphicsDevice dispositivo, SpriteBatch spriteBatch)
         {
-            dispositivo.Clear(Color.CornflowerBlue);
+            dispositivo.Clear(Color.Black);
             //iniciar desenhar
             spriteBatch.Begin();
 
@@ -108,8 +126,20 @@ namespace Race_Cars
             if (estado == 0)
                 desenhaMenu(gameTime, spriteBatch);
 
-            //desenhar jogo
             if (estado == 1)
+            {
+                menu.Draw(gameTime, spriteBatch);
+                //desenhaPista(gameTime, spriteBatch);
+                //
+               
+               // menu.executeall(gameTime, dispositivo,spriteBatch);
+
+               // jogo.Draw(gameTime, dispositivo, spriteBatch, spriteBatch);
+            }
+            
+
+            //desenhar jogo
+            if (estado == 2)
                 jogo.Draw(gameTime, dispositivo, spriteBatch, spriteBatch);
 
             //terminar desenhar
@@ -126,7 +156,7 @@ namespace Race_Cars
                 cor = Color.White;
             else
                 cor = Color.Brown;
-            rtemp = new Rectangle(0, 0, opJogar.Width, opJogar.Height);
+            rtemp = new Rectangle(550, 170, opJogar.Width, opJogar.Height);
             spriteBatch.Draw(opJogar, rtemp, cor);
 
             if (opMenu == 2)
@@ -137,6 +167,5 @@ namespace Race_Cars
             rtemp = new Rectangle(0, 200, opSair.Width, opSair.Height);
             spriteBatch.Draw(opSair, rtemp, cor);
         }
-
     }
 }
