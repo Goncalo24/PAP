@@ -16,18 +16,16 @@ namespace Race_Cars
         GamePadState gamepad;
         Jogador jogador;
         Pista pista;
-        int npista = 0;
 
-        public Jogo(Game game,int npista)
+        public Jogo(Game game)
         {
             this.game = game;
-            this.npista = npista;
         }
 
         public void Initialize()
         {
             pista = new Pista(game);
-            pista.Initialize(npista);
+            pista.Initialize();
 
             jogador = new Jogador(game);
             jogador.Initialize();
@@ -50,14 +48,13 @@ namespace Race_Cars
                 return true;
             }
             //atualizar jogador
-            jogador.Update(teclado,pista);
+            jogador.Update(teclado);
 
             return false;
         }
 
         public void Draw(GameTime gameTime, GraphicsDevice dispositivo, SpriteBatch spriteBatchPista, SpriteBatch spriteBatchJogador)
         {
-            
             //fundo
             pista.Draw(spriteBatchPista);
             //plataformas
