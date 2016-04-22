@@ -49,7 +49,7 @@ namespace Race_Cars
             {
                 string[] respostatxt = txtResposta.Split(';');
                 //id
-                string id = respostatxt[0].Split(':')[1];
+                string id = respostatxt[0].Split(':')[1]; 
                 //nickname
                 string nickname = respostatxt[1].Split(':')[1];
                 //carro
