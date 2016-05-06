@@ -29,7 +29,7 @@ namespace Race_Cars
         public Colisao(Game game, int i, Rectangle NovoRetangulo)
         {
                 texture = game.Content.Load<Texture2D>("TexturasPistas/Tile" + i);
-                this.Rectangle = NovoRetangulo;
+                this.Rectangle = NovoRetangulo;  
         }
     }
 }
