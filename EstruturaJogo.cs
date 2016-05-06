@@ -25,7 +25,6 @@ namespace Race_Cars
         bool disparou = false;
         Jogo jogo;
         MenuPista menu;
-        MenuCarro carro;
 
         public EstruturaJogo(Game game)
         {

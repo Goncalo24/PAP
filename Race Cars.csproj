@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Carro.txt" />
     <Content Include="Content\jogar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -101,27 +102,45 @@
     <Content Include="Content\TexturasJogador\carro1_lado.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\TexturasPistas\bricks.bmp" />
-    <Content Include="Content\TexturasPistas\bricks_nm.bmp" />
-    <Content Include="Content\TexturasPistas\ciottoli_bw.bmp" />
-    <Content Include="Content\TexturasPistas\ciottoli_cm.bmp" />
-    <Content Include="Content\TexturasPistas\ciottoli_normal.bmp" />
-    <Content Include="Content\TexturasPistas\Tile1.bmp">
+    <Content Include="Content\TexturasJogador\carro2_cima.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\TexturasPistas\se_free_dirt_texture.jpg" />
-    <Content Include="Content\TexturasPistas\se_free_grass_texture.jpg" />
-    <Content Include="Content\TexturasPistas\se_free_ground_texture.jpg" />
-    <Content Include="Content\TexturasPistas\se_free_mud_texture.jpg" />
-    <Content Include="Content\TexturasPistas\se_free_road_texture.jpg" />
-    <Content Include="Content\TexturasPistas\Tile2.jpg">
+    <Content Include="Content\TexturasJogador\carro2_dd.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\TexturasPistas\se_free_wood_texture.jpg" />
-    <Content Include="Content\TexturasPistas\wood_axis.jpg" />
-    <Content Include="Content\TexturasPistas\wood_axis_light.jpg" />
-    <Content Include="Content\TexturasPistas\wood_axis_lightwood.jpg" />
-    <Content Include="Content\TexturasPistas\wood_base.jpg" />
+    <Content Include="Content\TexturasJogador\carro2_de.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TexturasJogador\carro2_lado.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TexturasPistas\Tile3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TexturasPistas\Tile2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TexturasPistas\Tile1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TexturasPistas\Tile4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TexturasPistas\Tile5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TexturasPistas\Tile6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TexturasPistas\Tile7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\TexturasPistas\Tile8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Voltas0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icon.ico" />
     <Content Include="Pistas\pista3.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

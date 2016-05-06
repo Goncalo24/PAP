@@ -34,29 +34,40 @@ namespace Race_Cars
         {
             string email;
             string pass;
-
+            
+                        
             email = tbEmail.Text;
             pass = tbPass.Text;
-
-            Uri uri = new Uri("http://localhost:49580/ValidaLogin.aspx?nome=" + email + "&password=" + pass);
-            WebRequest pedido = WebRequest.Create(uri);
-            WebResponse resposta = await pedido.GetResponseAsync();
-            StreamReader ler = new StreamReader(resposta.GetResponseStream());
-            string txtResposta = ler.ReadToEnd();
-            if (txtResposta == "erro")
-                lberro.Text = "Login falhou";
-            else
+            
+            try
             {
-                string[] respostatxt = txtResposta.Split(';');
-                //id
-                string id = respostatxt[0].Split(':')[1]; 
-                //nickname
-                string nickname = respostatxt[1].Split(':')[1];
-                //carro
-                string carro = respostatxt[2].Split(':')[1];
-                //pista
-                //string pista = respostatxt[3].Split(':')[1];
-                this.Close();
+                Uri uri = new Uri("http://localhost:49580/ValidaLogin.aspx?nome=" + email + "&password=" + pass);
+                WebRequest pedido = WebRequest.Create(uri);
+                WebResponse resposta = await pedido.GetResponseAsync();
+                StreamReader ler = new StreamReader(resposta.GetResponseStream());
+                string txtResposta = ler.ReadToEnd();
+                if (txtResposta == "erro")
+                    lberro.Text = "Login falhou";
+                else
+                {
+                    string player = "1";
+                    string[] respostatxt = txtResposta.Split(';');
+                    //id
+                    string id = respostatxt[0].Split(':')[1];
+                    //nickname
+                    string nickname = respostatxt[1].Split(':')[1];
+                    //carro
+                    string carro = respostatxt[2].Split(':')[1];
+
+                    string[] arr = { player, carro };
+
+                    File.WriteAllLines("Content/Carro.txt", arr);
+                    this.Close();
+                }
+            }
+            catch (Exception erro)
+            {
+                lberro.Text = "Ligue-se á internet para continuar online";
             }
         }
     }

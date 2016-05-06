@@ -59,13 +59,13 @@ namespace Race_Cars
         public void Initialize(int npista)
         {
             //carregar mapa do ficheiro
-            Generate( 64, npista);
+            Generate( 52, npista);
         }
 
         public void LoadContent()
         {
-            tileTextures.Add(game.Content.Load<Texture2D>("TexturasPistas/Tile1.bmp"));
-            tileTextures.Add(game.Content.Load<Texture2D>("TexturasPistas/Tile2.jpg"));
+            tileTextures.Add(game.Content.Load<Texture2D>("TexturasPistas/Tile1.png"));
+            tileTextures.Add(game.Content.Load<Texture2D>("TexturasPistas/Tile2.png"));
         }
 
         public void Draw(SpriteBatch spritBatch)
@@ -78,8 +78,8 @@ namespace Race_Cars
 
         public int getTile(int X, int Y)
         {
-            double pX = (double)X / 64;
-            double pY = (double)Y / 64;
+            double pX = (double)X / 52;
+            double pY = (double)Y / 52;
             int fx =(int) Math.Ceiling(pX);
             int fy = (int)Math.Ceiling(pY);
             int ix = (int)Math.Floor(pX);
@@ -89,9 +89,37 @@ namespace Race_Cars
             {
                 for (int l = iy; l <= fy; l++)
                 {
-                    if (mapa[l,i]!=0)
+                    if (mapa[l,i] == 1)
                     {
                         return 1;
+                    }
+                    if (mapa[l, i] == 2)
+                    {
+                        return 2;
+                    }
+                    if (mapa[l, i] == 3)
+                    {
+                        return 3;
+                    }
+                    if (mapa[l, i] == 4)
+                    {
+                        return 4;
+                    }
+                    if (mapa[l, i] == 5)
+                    {
+                        return 5;
+                    }
+                    if (mapa[l, i] == 6)
+                    {
+                        return 6;
+                    }
+                    if (mapa[l, i] == 7)
+                    {
+                        return 7;
+                    }
+                    if (mapa[l, i] == 8)
+                    {
+                        return 8;
                     }
                 }
             }

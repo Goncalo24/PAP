@@ -11,7 +11,6 @@ namespace Race_Cars
     class Tiles
     {
         protected Texture2D texture;
-       // public Game game;
         private Rectangle rectangle;
         public Rectangle Rectangle
         {
