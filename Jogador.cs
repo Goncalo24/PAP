@@ -21,9 +21,10 @@ namespace Race_Cars
         int dir = 0;
         int velocidade = 0;
         int player = 0;
-        int carro;
+        int carro = 2;
+        int id;
         double voltas = 0;
-        bool check1, check2, check3, check4;
+        bool check1, check2, check3, check4=true;
         int pontuacao = 500;
 
         public Jogador(Game game)
@@ -34,15 +35,16 @@ namespace Race_Cars
 
         public void Initialize()
         {
-            posicao.X = 600;
+            posicao.X = 620;
             posicao.Y = 100;
         }
-        
+
         public void LoadContent()
         {
             string[] data = File.ReadAllLines("Content/Carro.txt");
-            player = int.Parse(data[0]);
-            carro = int.Parse(data[1]);
+            id = int.Parse(data[0]);
+            player = int.Parse(data[1]);
+            carro = int.Parse(data[2]);
 
             if (player != 0)
             {
@@ -181,6 +183,10 @@ namespace Race_Cars
                 posicao = anterior;
                 Console.WriteLine("x: {0}; y: {1}", posicao.X, posicao.Y);
             }
+            if (pista.getTile(posicao.X, posicao.Y) == 2)
+            {
+                check4 = false;
+            }
             if (pista.getTile(posicao.X, posicao.Y) == 3)
             {
                 posicao = anterior;
@@ -188,7 +194,7 @@ namespace Race_Cars
             }
             if (pista.getTile(posicao.X, posicao.Y) == 5)
             {
-                check1 = true;
+                check3 = true;
             }
             if (pista.getTile(posicao.X, posicao.Y) == 6)
             {
@@ -196,24 +202,30 @@ namespace Race_Cars
             }
             if (pista.getTile(posicao.X, posicao.Y) == 7)
             {
-                check3 = true;
+                check1 = true;
             }
             if (pista.getTile(posicao.X, posicao.Y) == 8)
             {
                 check4 = true;
             }
-            if (check1 == true && check2 == true && check3 == true && check4 == true)
+
+            if (check1 == true && check2 == true && check3 == true && check4 == false)
             {
                 voltas += 1;
 
                 check1 = false;
                 check2 = false;
                 check3 = false;
-                check4 = false;
+                check4 = true;
             }
             if (voltas == 1)
             {
-                game.Exit();
+                /*string[] arr = { id.ToString(), carro.ToString(), pontuacao.ToString() };
+                File.WriteAllLines("Content/Resultados.txt", arr);*/
+
+                Resultados r = new Resultados(id, pontuacao, carro);
+                r.Enabled = true;
+                r.ShowDialog();
             }
         }
 

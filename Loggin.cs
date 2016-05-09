@@ -35,7 +35,6 @@ namespace Race_Cars
             string email;
             string pass;
             
-                        
             email = tbEmail.Text;
             pass = tbPass.Text;
             
@@ -46,6 +45,7 @@ namespace Race_Cars
                 WebResponse resposta = await pedido.GetResponseAsync();
                 StreamReader ler = new StreamReader(resposta.GetResponseStream());
                 string txtResposta = ler.ReadToEnd();
+
                 if (txtResposta == "erro")
                     lberro.Text = "Login falhou";
                 else
@@ -59,7 +59,7 @@ namespace Race_Cars
                     //carro
                     string carro = respostatxt[2].Split(':')[1];
 
-                    string[] arr = { player, carro };
+                    string[] arr = {id, player, carro };
 
                     File.WriteAllLines("Content/Carro.txt", arr);
                     this.Close();

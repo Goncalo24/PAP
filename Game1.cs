@@ -24,7 +24,7 @@ namespace Race_Cars
 
             graphics.IsFullScreen = false;
             graphics.PreferredBackBufferWidth = 1350;
-            graphics.PreferredBackBufferHeight = 730;
+            graphics.PreferredBackBufferHeight = 729;
             graphics.ApplyChanges();
         }
 
