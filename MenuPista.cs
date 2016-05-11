@@ -55,7 +55,7 @@ namespace Race_Cars
             //atualizar menu
            
         }*/
-        //devolve 0-continuar;1,2,3 para pista 4 para sair
+        //devolve: 0-continuar; 1,2,3 para pista; 4 para sair
         public int atualizarMenu()
         {
 

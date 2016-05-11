@@ -14,15 +14,16 @@ namespace Race_Cars
 {
     public partial class Resultados : Form
     {
-        int idplay, car, pont, moedas;
+        int idplay, car, pista, pont, moedas;
 
-        public Resultados(int id, int pontuacao, int carro)
+        public Resultados(int id, int pontuacao, int carro, int pist)
         {
             InitializeComponent();
-
+       
             idplay = id;
             car = carro;
             pont = pontuacao;
+            pista = pist;
 
             if (pontuacao <= 0)
             {
@@ -76,33 +77,19 @@ namespace Race_Cars
 
         private async void btnCont_Click(object sender, EventArgs e)
         {
-            Uri uri = new Uri("http://localhost:49580/RecebeDados.aspx?id=" + idplay + "&pontuacao=" + pont + "&moedas=" + moedas);
-            WebRequest pedido = WebRequest.Create(uri);
-            WebResponse resposta = await pedido.GetResponseAsync();
-            StreamReader ler = new StreamReader(resposta.GetResponseStream());
-            string txtResposta = ler.ReadToEnd();
-
-            /*if (txtResposta == "erro") ;
-            //lberro.Text = "Login falhou";
-            else
+            try
             {
-                string player = "1";
-                string[] respostatxt = txtResposta.Split(';');
-                //id
-                string id = respostatxt[0].Split(':')[1];
-                //nickname
-                string nickname = respostatxt[1].Split(':')[1];
-                //carro
-                string carro = respostatxt[2].Split(':')[1];
-
-                string[] arr = { id, player, carro };
-
-                File.WriteAllLines("Content/Carro.txt", arr);
-                this.Close();
-            }*/
-
+                Uri uri = new Uri("http://localhost:49580/RecebeDados.aspx?id=" + idplay + "&carro=" + car + "&pista=" + pista + "&pontuacao=" + pont + "&moedas=" + moedas);
+                WebRequest pedido = WebRequest.Create(uri);
+                WebResponse resposta = await pedido.GetResponseAsync();
+                StreamReader ler = new StreamReader(resposta.GetResponseStream());
+                string txtResposta = ler.ReadToEnd();
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Erro ao guardar dados no servidor") ;
+            }
             this.Close();
-
         }
     }
 }

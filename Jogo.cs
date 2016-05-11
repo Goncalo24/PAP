@@ -50,9 +50,9 @@ namespace Race_Cars
                 return true;
             }
             //atualizar jogador
-            jogador.Update(teclado,pista);
+            return jogador.Update(teclado,pista,npista);
 
-            return false;
+           // return false;
         }
 
         public void Draw(GameTime gameTime, GraphicsDevice dispositivo, SpriteBatch spriteBatchPista, SpriteBatch spriteBatchJogador)

@@ -22,10 +22,10 @@ namespace Race_Cars
         int velocidade = 0;
         int player = 0;
         int carro = 2;
-        int id;
+        int id, pist;
+        int pontuacao = 500;
         double voltas = 0;
         bool check1, check2, check3, check4=true;
-        int pontuacao = 500;
 
         public Jogador(Game game)
         {
@@ -147,7 +147,7 @@ namespace Race_Cars
             }
         }
 
-        public void Update(KeyboardState teclado,Pista pista)
+        public bool Update(KeyboardState teclado,Pista pista, int npista)
         {
             Rectangle anterior = posicao;
             if (teclado[Keys.Up] == KeyState.Down)
@@ -220,13 +220,13 @@ namespace Race_Cars
             }
             if (voltas == 1)
             {
-                /*string[] arr = { id.ToString(), carro.ToString(), pontuacao.ToString() };
-                File.WriteAllLines("Content/Resultados.txt", arr);*/
-
-                Resultados r = new Resultados(id, pontuacao, carro);
+                pist = npista;
+                Resultados r = new Resultados(id, pontuacao, carro, pist);
                 r.Enabled = true;
                 r.ShowDialog();
+                return true;
             }
+            return false;
         }
 
         public void Draw(SpriteBatch sprites)
