@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="MenuCarro.cs" />
     <Compile Include="MenuPista.cs" />
+    <Compile Include="MudaCarro.cs" />
     <Compile Include="Pista.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
