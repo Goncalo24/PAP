@@ -83,7 +83,7 @@ namespace Race_Cars
 
                     imagem2 = game.Content.Load<Texture2D>("TexturasJogador/carro2_cima");
                     retangulo = new Rectangle(0, 0, imagem2.Width, imagem2.Height);
-                   posicao.Width = retangulo.Width;
+                    posicao.Width = retangulo.Width;
                     posicao.Height = retangulo.Height;
 
                     imagem3 = game.Content.Load<Texture2D>("TexturasJogador/carro2_de");

@@ -30,7 +30,7 @@ namespace Race_Cars
         MenuPista menu;
         int id;
         int loggado;
-        Song song;
+        //Song song;
 
         public EstruturaJogo(Game game)
         {
@@ -52,9 +52,9 @@ namespace Race_Cars
 
         public void LoadContent()
         {
-            opJogar = game.Content.Load<Texture2D>("Jogar");
-            opSair = game.Content.Load<Texture2D>("sair");
-            //song = game.Content.Load<Song>("song_title"); 
+            opJogar = game.Content.Load<Texture2D>("botaojogar");
+            opSair = game.Content.Load<Texture2D>("botaosair");
+            //song = game.Content.Load<Song>("musica");
         }
 
         public void Update(GameTime gameTime)
@@ -134,7 +134,9 @@ namespace Race_Cars
 
             //desenhar menu
             if (estado == 0)
+            {
                 desenhaMenu(gameTime, spriteBatch);
+            }
 
             if (estado == 1)
             {
@@ -143,9 +145,11 @@ namespace Race_Cars
 
             //desenhar jogo
             if (estado == 2)
+            {
                 jogo.Draw(gameTime, dispositivo, spriteBatch, spriteBatch);
                 //MediaPlayer.Play(song);
-
+            }
+                
             //terminar desenhar
             spriteBatch.End();
         }
@@ -160,7 +164,7 @@ namespace Race_Cars
                 cor = Color.White;
             else
                 cor = Color.Brown;
-            rtemp = new Rectangle(550, 170, opJogar.Width, opJogar.Height);
+            rtemp = new Rectangle(450, 120, opJogar.Width, opJogar.Height);
             spriteBatch.Draw(opJogar, rtemp, cor);
 
             if (opMenu == 2)
@@ -168,7 +172,7 @@ namespace Race_Cars
             else
                 cor = Color.Brown;
 
-            rtemp = new Rectangle(550, 370, opSair.Width, opSair.Height);
+            rtemp = new Rectangle(450, 300, opSair.Width, opSair.Height);
             spriteBatch.Draw(opSair, rtemp, cor);
         }
     }

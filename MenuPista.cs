@@ -26,35 +26,21 @@ namespace Race_Cars
             Initialize();
 
             LoadContent();
-           // Update(gameTime);
-        //    atualizarMenu();
-            //Draw(gameTime, dispositivo, spriteBatch);
-          //  desenhaMenu(gameTime, spriteBatch);
         }
 
         public void Initialize()
         {
             opMenu = 1;
-
-            
         }
 
         public void LoadContent()
         {
-            p1 = game.Content.Load<Texture2D>("pista 1");
-            p2 = game.Content.Load<Texture2D>("pista 2");
-            p3 = game.Content.Load<Texture2D>("pista 3");
-            opSair = game.Content.Load<Texture2D>("sair");
-
+            p1 = game.Content.Load<Texture2D>("Pista1");
+            p2 = game.Content.Load<Texture2D>("Pista2");
+            p3 = game.Content.Load<Texture2D>("Pista3");
+            opSair = game.Content.Load<Texture2D>("botaosairpista");
         }
 
-      /*  public void Update(GameTime gameTime)
-        {
-            //atualizar jogo
-           //atualizarMenu();
-            //atualizar menu
-           
-        }*/
         //devolve: 0-continuar; 1,2,3 para pista; 4 para sair
         public int atualizarMenu()
         {
@@ -105,15 +91,7 @@ namespace Race_Cars
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            
-            //iniciar desenhar
-          /*  spriteBatch.Begin();*/
-
-                desenhaMenu(gameTime, spriteBatch);
-
-
-            //terminar desenhar
-          //  spriteBatch.End();
+            desenhaMenu(gameTime, spriteBatch);
         }
 
         public void desenhaMenu(GameTime gameTime, SpriteBatch spriteBatch)
@@ -125,7 +103,7 @@ namespace Race_Cars
                 cor = Color.White;
             else
                 cor = Color.Brown;
-            rtemp = new Rectangle(0, 0, p1.Width, p1.Height);
+            rtemp = new Rectangle(560, 10, p1.Width, p1.Height);
             spriteBatch.Draw(p1, rtemp, cor);
 
             if (opMenu == 2)
@@ -133,7 +111,7 @@ namespace Race_Cars
             else
                 cor = Color.Brown;
 
-            rtemp = new Rectangle(0, 100, p2.Width, p2.Height);
+            rtemp = new Rectangle(560, 130, p2.Width, p2.Height);
             spriteBatch.Draw(p2, rtemp, cor);
 
             if (opMenu == 3)
@@ -141,7 +119,7 @@ namespace Race_Cars
             else
                 cor = Color.Brown;
 
-            rtemp = new Rectangle(0, 200, p3.Width, p3.Height);
+            rtemp = new Rectangle(560, 250, p3.Width, p3.Height);
             spriteBatch.Draw(p3, rtemp, cor);
 
             if (opMenu == 4)
@@ -149,7 +127,7 @@ namespace Race_Cars
             else
                 cor = Color.Brown;
 
-            rtemp = new Rectangle(0, 300, opSair.Width, opSair.Height);
+            rtemp = new Rectangle(560, 370, opSair.Width, opSair.Height);
             spriteBatch.Draw(opSair, rtemp, cor);
         }
     }
