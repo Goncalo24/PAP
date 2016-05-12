@@ -21,7 +21,7 @@ namespace Race_Cars
         int dir = 0;
         int velocidade = 0;
         int player = 0;
-        int carro = 2;
+        int carro = 0;
         int id, pist;
         int pontuacao = 500;
         double voltas = 0;
@@ -74,7 +74,7 @@ namespace Race_Cars
                 }
                 else if (carro == 2)
                 {
-                    velocidade = 5;
+                    velocidade = 4;
 
                     imagem1 = game.Content.Load<Texture2D>("TexturasJogador/carro2_lado");
                     retangulo = new Rectangle(0, 0, imagem1.Width, imagem1.Height);
@@ -83,7 +83,7 @@ namespace Race_Cars
 
                     imagem2 = game.Content.Load<Texture2D>("TexturasJogador/carro2_cima");
                     retangulo = new Rectangle(0, 0, imagem2.Width, imagem2.Height);
-                    posicao.Width = retangulo.Width;
+                   posicao.Width = retangulo.Width;
                     posicao.Height = retangulo.Height;
 
                     imagem3 = game.Content.Load<Texture2D>("TexturasJogador/carro2_de");
@@ -121,30 +121,6 @@ namespace Race_Cars
                     posicao.Height = retangulo.Height;
                 }
             }
-            else
-            {
-                velocidade = 5;
-
-                imagem1 = game.Content.Load<Texture2D>("TexturasJogador/carro2_lado");
-                retangulo = new Rectangle(0, 0, imagem1.Width, imagem1.Height);
-                posicao.Width = retangulo.Width;
-                posicao.Height = retangulo.Height;
-
-                imagem2 = game.Content.Load<Texture2D>("TexturasJogador/carro2_cima");
-                retangulo = new Rectangle(0, 0, imagem2.Width, imagem2.Height);
-                posicao.Width = retangulo.Width;
-                posicao.Height = retangulo.Height;
-
-                imagem3 = game.Content.Load<Texture2D>("TexturasJogador/carro2_de");
-                retangulo = new Rectangle(0, 0, imagem3.Width, imagem3.Height);
-                posicao.Width = retangulo.Width;
-                posicao.Height = retangulo.Height;
-
-                imagem4 = game.Content.Load<Texture2D>("TexturasJogador/carro2_dd");
-                retangulo = new Rectangle(0, 0, imagem4.Width, imagem4.Height);
-                posicao.Width = retangulo.Width;
-                posicao.Height = retangulo.Height;
-            }
         }
 
         public bool Update(KeyboardState teclado,Pista pista, int npista)
@@ -181,7 +157,6 @@ namespace Race_Cars
             if (pista.getTile(posicao.X, posicao.Y) == 1 || pista.getTile(posicao.X, posicao.Y) == 4)
             {
                 posicao = anterior;
-                Console.WriteLine("x: {0}; y: {1}", posicao.X, posicao.Y);
             }
             if (pista.getTile(posicao.X, posicao.Y) == 2)
             {

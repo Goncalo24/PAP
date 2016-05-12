@@ -83,7 +83,7 @@ namespace Race_Cars
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.Gray);
             jogo.Draw(gameTime, GraphicsDevice, spriteBatch);
 
             // TODO: Add your drawing code here

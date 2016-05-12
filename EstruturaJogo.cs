@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using System.IO;
+using Microsoft.Xna.Framework.Media;
 
 namespace Race_Cars
 {
@@ -27,7 +28,9 @@ namespace Race_Cars
         bool disparou = false;
         Jogo jogo;
         MenuPista menu;
-        MudaCarro carro;
+        int id;
+        int loggado;
+        Song song;
 
         public EstruturaJogo(Game game)
         {
@@ -44,14 +47,14 @@ namespace Race_Cars
             f.ShowDialog();
 
             menu = new MenuPista(game);
+
         }
 
         public void LoadContent()
         {
             opJogar = game.Content.Load<Texture2D>("Jogar");
-            opCarro = game.Content.Load<Texture2D>("Jogar");
             opSair = game.Content.Load<Texture2D>("sair");
-           
+            //song = game.Content.Load<Song>("song_title"); 
         }
 
         public void Update(GameTime gameTime)
@@ -65,7 +68,7 @@ namespace Race_Cars
                 int op=menu.atualizarMenu();
                 if (op == 1 || op == 2 || op==3)
                 {
-                    estado = 3;
+                    estado = 2;
                     jogo = new Jogo(game,op);
                     jogo.Initialize();
                     jogo.LoadContent();
@@ -77,19 +80,7 @@ namespace Race_Cars
                 }
             }
 
-            if (estado == 2)
-            {
-                int id;
-                int loggado;
-
-                string[] data = File.ReadAllLines("Content/Carro.txt");
-                id = int.Parse(data[0]);
-                loggado = int.Parse(data[1]);
-
-                carro.carro(id, loggado);
-            }
-
-            if (estado == 3) if (jogo.Update(gameTime)) estado = 0;
+            if (estado == 2) if (jogo.Update(gameTime)) estado = 0;
         }
 
         public void atualizarMenu()
@@ -151,8 +142,9 @@ namespace Race_Cars
             }
 
             //desenhar jogo
-            if (estado == 3)
+            if (estado == 2)
                 jogo.Draw(gameTime, dispositivo, spriteBatch, spriteBatch);
+                //MediaPlayer.Play(song);
 
             //terminar desenhar
             spriteBatch.End();
@@ -175,15 +167,8 @@ namespace Race_Cars
                 cor = Color.White;
             else
                 cor = Color.Brown;
-            rtemp = new Rectangle(550, 170, opCarro.Width, opCarro.Height);
-            spriteBatch.Draw(opCarro, rtemp, cor);
 
-            if (opMenu == 3)
-                cor = Color.White;
-            else
-                cor = Color.Brown;
-
-            rtemp = new Rectangle(0, 200, opSair.Width, opSair.Height);
+            rtemp = new Rectangle(550, 370, opSair.Width, opSair.Height);
             spriteBatch.Draw(opSair, rtemp, cor);
         }
     }
